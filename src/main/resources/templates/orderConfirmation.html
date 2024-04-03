@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <title>Ordered Ticket - Confirmation</title>
+  <style type="text/css">
+    /*body {*/
+    /*  width: 800px;*/
+    /*  margin: auto;*/
+    /*}*/
+    table {
+      width:100%;
+    }
+    table, td, th {
+      border: 1px solid black;
+      padding: 3px 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="/home">Movie Tickets</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+
+          <form class="form-inline my-2 my-lg-0">
+            <div class="input-group input-group-sm">
+              <ul class="navbar-nav m-auto">
+                <li class="nav-item m-auto">
+                  <a class="nav-link active" href="#about">About</a>
+                </li>
+                <li class="nav-item m-auto">
+                  <a class="nav-link active" href="#ticket">Get a ticket</a>
+                </li>
+              </ul>
+            </div>
+            <a class="btn btn-success btn-sm ml-3" href="/shopping-cart">
+              <i class="fa fa-shopping-cart"></i> Cart
+            </a>
+            <a class="btn btn-light btn-sm ml-3" href="/logout">
+              <i class="fa fa-shopping-cart"></i> Logout
+            </a>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container mt-4">
+  <table>
+    <tr>
+      <th colspan="2">
+        Your Order Status
+      </th>
+    </tr>
+
+    <tr>
+      <td><b>Ticket for Movie</b></td>
+      <td th:text="${selectMovie}"></td>
+    </tr>
+    <tr>
+      <td><b>Number of tickets</b></td>
+      <td th:text="${numTickets}"></td>
+    </tr>
+    <tr>
+      <td><b>User</b></td>
+      <td th:text="${user.getUsername()}"></td>
+    </tr>
+    <tr>
+      <td><b>Date created</b></td>
+      <td th:text="${dateOrder}"></td>
+    </tr>
+
+  </table>
+    <br> <br>
+
+    <a type="button" class="btn btn-primary" href="/movies">Back</a>
+
+    <a class="btn btn-success primay ml-3" href="/shopping-cart">
+      <i class="fa fa-shopping-cart"></i> View Cart
+    </a>
+</div>
+
+<ul>
+  <li th:each="ticket: ${tickets}">
+    <th:block th:text="${ticket.movieTitle}"/>
+    (<th:block th:text="${ticket.numberOfTickets}"/> tickets)</li>
+
+</ul>
+
+
+<!--<a th:href="@{'/orderConfirm/delete/{id}'}"class="btn btn-sm btn-danger"><i class="fa fa-trash">Delete</i></a>-->
+<!--<a th:href="@{'/orderConfirm/edit/{id}'}" class="btn btn-sm btn-info"><i class="fa fa-trash">Edit</i></a>-->
+</body>
+</html>

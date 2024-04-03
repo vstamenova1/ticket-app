@@ -1,0 +1,18 @@
+package mk.ukim.finki.movieTicket.repository.jpa;
+
+import mk.ukim.finki.movieTicket.model.Movie;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+
+@Repository
+public interface MovieRepository extends JpaRepository<Movie, Long> {
+
+    List<Movie> findAllByTitleContaining(String text);
+
+    List <Movie> findMoviesByRatingGreaterThan (Double rating);
+
+    List<Movie> findAllByTitleContainingAndRatingEquals(String text, Double rating);
+}
